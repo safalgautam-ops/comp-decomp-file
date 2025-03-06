@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-// Function to compress the file using RLE================
+// Function to compress the file using RLE
 void compressFILE(FILE *inputFILE, FILE *outputFILE) {
     int currentChar, prevChar;
     int count = 1;
@@ -21,6 +20,7 @@ void compressFILE(FILE *inputFILE, FILE *outputFILE) {
             count = 1;
         }
     }
+    // ensures that the last sequence of characters is also written
     fprintf(outputFILE, "%d%c", count, prevChar);
 }
 
@@ -69,7 +69,7 @@ int main() {
         fclose(inputFILE);
         fclose(outputFILE);
     } else if (ans == 'd') {
-        // Decompression
+    // Decompression
         printf("Enter the input file name for decompression: ");
         scanf("%s", inputFileName);
         inputFILE = fopen(inputFileName, "r");
