@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Function to compress the file using RLE
+// Function to compress the file using RLE================
 void compressFILE(FILE *inputFILE, FILE *outputFILE) {
     int currentChar, prevChar;
     int count = 1;
@@ -12,12 +12,12 @@ void compressFILE(FILE *inputFILE, FILE *outputFILE) {
         return;
     }
 
-    while ((currentChar = fgetc(inputFILE)) != EOF) {  // Fixed assignment
+    while ((currentChar = fgetc(inputFILE)) != EOF) { 
         if (currentChar == prevChar) {
             count++;
         } else {
             fprintf(outputFILE, "%d%c", count, prevChar);
-            prevChar = currentChar;  // Fixed assignment
+            prevChar = currentChar;  
             count = 1;
         }
     }
@@ -28,7 +28,7 @@ void compressFILE(FILE *inputFILE, FILE *outputFILE) {
 void decompressFile(FILE *inputFILE, FILE *outputFILE) {
     int count;
     char ch;
-    while (fscanf(inputFILE, "%d%c", &count, &ch) == 2) {  // Fixed fscanf check
+    while (fscanf(inputFILE, "%d%c", &count, &ch) == 2) {  
         for (int i = 0; i < count; i++) {
             fputc(ch, outputFILE);
         }
@@ -43,7 +43,7 @@ int main() {
 
     printf("Do you want to compress or decompress?\n");
     printf("Write c for compression and d for decompression \n");
-    scanf(" %c", &ans);  // Fixed space before %c
+    scanf(" %c", &ans);  
 
     // Compression
     if (ans == 'c') {
@@ -51,7 +51,7 @@ int main() {
         scanf("%s", inputFileName);
         inputFILE = fopen(inputFileName, "r");
         if (inputFILE == NULL) {
-            printf("Couldn't open the input file.\n");  // Fixed typo
+            printf("Couldn't open the input file.\n"); 
             return 1;
         }
 
